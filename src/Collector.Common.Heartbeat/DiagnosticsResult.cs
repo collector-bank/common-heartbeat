@@ -127,6 +127,7 @@ namespace Collector.Common.Heartbeat
         private static string GetDescriptiveNameFromTestAction(Func<Task> testAction)
         {
             var className = TrimGenericTypeName(testAction.GetMethodInfo()?.DeclaringType?.Name);
+            className = string.Join(string.Empty, className.ToCharArray().Where(c => char.IsLetterOrDigit(c) || c == '_' || c == '.'));
             var methodName = testAction.GetMethodInfo()?.Name;
             return string.Join(".", new[] { className, methodName }.Where(x => x != null));
         }

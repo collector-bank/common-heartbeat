@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Threading.Tasks;
 
 namespace HeartbeatExample
@@ -17,6 +17,14 @@ namespace HeartbeatExample
                 throw new Exception("Internal error");
             }
             await Task.Delay(250);
+        }
+    }
+
+    public class GenericSampleComponent<T>
+    {
+        public async Task PerformHealthCheckAsync()
+        {
+            await Task.Delay(300);
         }
     }
 }

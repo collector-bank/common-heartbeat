@@ -126,10 +126,15 @@ namespace Collector.Common.Heartbeat
 
         private static string GetDescriptiveNameFromTestAction(Func<Task> testAction)
         {
-            var className = TrimGenericTypeName(testAction.GetMethodInfo()?.DeclaringType?.Name);
-            className = string.Join(string.Empty, className.ToCharArray().Where(c => char.IsLetterOrDigit(c) || c == '_' || c == '.'));
+            var className = NormalizeString(TrimGenericTypeName(testAction.GetMethodInfo()?.DeclaringType?.Name));
+            var genericArgs = string.Join(".", testAction.GetMethodInfo()?.DeclaringType?.GenericTypeArguments.Select(x => NormalizeString(x.Name)));
             var methodName = testAction.GetMethodInfo()?.Name;
-            return string.Join(".", new[] { className, methodName }.Where(x => x != null));
+            return string.Join(".", new[] { className, genericArgs, methodName }.Where(x => !string.IsNullOrWhiteSpace(x)));
+        }
+
+        private static string NormalizeString(string s)
+        {
+            return string.Join(string.Empty, s.ToCharArray().Where(c => char.IsLetterOrDigit(c) || c == '_' || c == '.'));
         }
     }
 }

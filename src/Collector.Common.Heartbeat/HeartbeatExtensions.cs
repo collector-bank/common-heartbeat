@@ -53,7 +53,7 @@ namespace Collector.Common.Heartbeat
         {
             var heartbeatOptions = new HeartbeatOptions();
             options?.Invoke(heartbeatOptions);
-            return UseHeartbeat<IHeartbeatMonitor>(applicationBuilder, null, heartbeatOptions);
+            return UseHeartbeat<IHeartbeatMonitor>(applicationBuilder, monitor => monitor.RunAsync(), heartbeatOptions);
         }
 
         /// <summary>

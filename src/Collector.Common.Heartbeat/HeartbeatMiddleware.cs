@@ -17,7 +17,7 @@ namespace Collector.Common.Heartbeat
         private const string HeartbeatScope = "Heartbeat";
         private const string ExecutionTimeScope = "ExecutionTime";
         private readonly Func<T, Task<DiagnosticsResults>> _healthCheckFunc;
-        private readonly ILogger _logger;
+        private ILogger _logger;
         private readonly RequestDelegate _next;
         private readonly HeartbeatOptions _options;
 
@@ -32,7 +32,7 @@ namespace Collector.Common.Heartbeat
             Func<T, Task<DiagnosticsResults>> healthCheckFunc)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
-            _logger = loggerFactory?.CreateLogger(typeof(HeartbeatMiddleware<T>)) ??
+            _logger = loggerFactory?.CreateLogger(typeof(T)) ??
                       throw new ArgumentNullException(nameof(loggerFactory));
             _options = options ?? throw new ArgumentNullException(nameof(options));
             _healthCheckFunc = healthCheckFunc ?? throw new ArgumentNullException(nameof(healthCheckFunc));
@@ -45,6 +45,11 @@ namespace Collector.Common.Heartbeat
         {
             if (httpContext == null)
                 throw new ArgumentNullException(nameof(httpContext));
+
+            // Use ILogger<T> if registered to enable the use of scoped logger implementation
+            var logger = (ILogger<T>)httpContext.RequestServices.GetService(typeof(ILogger<T>));
+            if (logger != null)
+                _logger = logger;
 
             if (httpContext.Request.Method.Equals(HttpMethod.Get.Method, StringComparison.OrdinalIgnoreCase))
                 await InvokeHeartbeat(httpContext);

@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{5C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartbeatExample", "examples\HeartbeatExample\HeartbeatExample.csproj", "{27E1622E-F131-4CE4-9AD1-36160A2D9E49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.HeartbeatExample", "examples\Serilog.HeartbeatExample\Serilog.HeartbeatExample.csproj", "{84F58F3F-C670-40DF-A8DC-1317A680CDDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{27E1622E-F131-4CE4-9AD1-36160A2D9E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E1622E-F131-4CE4-9AD1-36160A2D9E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E1622E-F131-4CE4-9AD1-36160A2D9E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F58F3F-C670-40DF-A8DC-1317A680CDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F58F3F-C670-40DF-A8DC-1317A680CDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F58F3F-C670-40DF-A8DC-1317A680CDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F58F3F-C670-40DF-A8DC-1317A680CDDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{27E1622E-F131-4CE4-9AD1-36160A2D9E49} = {5CF221C5-A816-4A92-92DE-3892F798B382}
+		{84F58F3F-C670-40DF-A8DC-1317A680CDDD} = {5CF221C5-A816-4A92-92DE-3892F798B382}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7596910-8310-402C-A8C7-48DB606A5336}

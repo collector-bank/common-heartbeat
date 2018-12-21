@@ -1,10 +1,9 @@
-﻿    using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace HeartbeatExample
 {
     public class SampleComponent
-
     {
         private int _i = 0;
 
